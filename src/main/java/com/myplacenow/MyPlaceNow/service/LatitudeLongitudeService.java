@@ -1,7 +1,10 @@
 package com.myplacenow.MyPlaceNow.service;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +20,13 @@ public class LatitudeLongitudeService {
 	private LatitudeLongitudeRepository latitudeLongitudeRepository;
 
 	public LatitudeLongitudeModel save(LatitudeLongitudeModel latitudeLongitudeModel) {
-		    
-	        LocalDateTime dataHoraAtual = LocalDateTime.now();
-		latitudeLongitudeModel.setDataLatitudeLongitude(dataHoraAtual);
-	    return latitudeLongitudeRepository.save(latitudeLongitudeModel);
+		
+		ZoneId zonaBrasil = ZoneId.of("America/Sao_Paulo");
+		ZonedDateTime agoraComFuso = ZonedDateTime.now(zonaBrasil);
+		LocalDateTime dataHoraBrasil = agoraComFuso.toLocalDateTime();
+
+		latitudeLongitudeModel.setDataLatitudeLongitude(dataHoraBrasil);
+		return latitudeLongitudeRepository.save(latitudeLongitudeModel);
 	}
 	
 	
