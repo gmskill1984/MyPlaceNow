@@ -17,7 +17,9 @@ public class LatitudeLongitudeService {
 
 	public LatitudeLongitudeModel save(LatitudeLongitudeModel latitudeLongitudeModel) {
 		    
-	        return latitudeLongitudeRepository.save(latitudeLongitudeModel);
+	        LocalDateTime dataHoraAtual = LocalDateTime.now();
+		latitudeLongitudeModel.setDataLatitudeLongitude(dataHoraAtual);
+	    return latitudeLongitudeRepository.save(latitudeLongitudeModel);
 	}
 	
 	
