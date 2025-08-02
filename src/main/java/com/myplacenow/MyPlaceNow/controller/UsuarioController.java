@@ -24,13 +24,13 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@PostMapping("/save")
-	public ResponseEntity<UsuarioModel> save(UsuarioModel usuario) {
+	public ResponseEntity<ResponseEntity<Object>> save(UsuarioModel usuario) {
 		return ResponseEntity.ok(usuarioService.save(usuario));
 	}
 	
 	@PostMapping("/getUsuario")
 	public ResponseEntity<List<UsuarioModel>> get() {
-		return ResponseEntity.ok(usuarioService.getUsuario());
+		return ResponseEntity.ok(usuarioService.getUsuarios());
 	}
 	
 
