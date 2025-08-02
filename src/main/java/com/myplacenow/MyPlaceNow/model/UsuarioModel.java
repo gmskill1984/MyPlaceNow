@@ -1,82 +1,106 @@
 package com.myplacenow.MyPlaceNow.model;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Email;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myplacenow.MyPlaceNow.enums.UsuarioRoles;
 
 @Entity
 @Table(name = "mp2_usuario")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UsuarioModel {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "mp2_id_usuario")
-	private Long idUsuario;
+public class UsuarioModel implements Serializable {
 
-	@Column(name = "mp2_nome_usuario")
-	private String nomeUsuario;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "mp2_id_usuario")
+    private Long idUsuario;
 
-	@Column(name = "mp2_email_usuario")
-	private String emailUsuario;
-	
-	@Column(name = "mp2_senha_usuario")
-	private String senhaUsuario;
+    @Column(name = "mp2_nome_usuario")
+    private String nomeUsuario;
 
-	@OneToOne(mappedBy = "usuario")
+    @Email
+    @Column(name = "mp2_email_usuario")
+    private String emailUsuario;
+
+    @Column(name = "mp2_senha_usuario")
+    private String senhaUsuario;
+
+    @Column(name = "mp2_ativo_usuario")
+    private String ativoUsuario;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "mp2_roles_usuario")
+    private UsuarioRoles usuarioRoles;
+
+    @OneToOne(mappedBy = "usuario")
+    @JsonManagedReference
     private LatitudeLongitudeModel latitudeLongitude;
 
-	public Long getIdUsuario() {
-		return idUsuario;
-	}
+    // Getters e setters (pode usar Lombok para facilitar)
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
-	}
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
 
-	public String getNomeUsuario() {
-		return nomeUsuario;
-	}
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
-	}
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
 
-	public String getEmailUsuario() {
-		return emailUsuario;
-	}
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
-	}
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
 
-	public String getSenhaUsuario() {
-		return senhaUsuario;
-	}
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
 
-	public void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
-	}
+    public String getSenhaUsuario() {
+        return senhaUsuario;
+    }
 
-	public LatitudeLongitudeModel getLatitudeLongitude() {
-		return latitudeLongitude;
-	}
+    public void setSenhaUsuario(String senhaUsuario) {
+        this.senhaUsuario = senhaUsuario;
+    }
 
-	public void setLatitudeLongitude(LatitudeLongitudeModel latitudeLongitude) {
-		this.latitudeLongitude = latitudeLongitude;
-	}
-	
-	
-	
+    public String getAtivoUsuario() {
+        return ativoUsuario;
+    }
+
+    public void setAtivoUsuario(String ativoUsuario) {
+        this.ativoUsuario = ativoUsuario;
+    }
+
+    public UsuarioRoles getUsuarioRoles() {
+        return usuarioRoles;
+    }
+
+    public void setUsuarioRoles(UsuarioRoles usuarioRoles) {
+        this.usuarioRoles = usuarioRoles;
+    }
+
+    public LatitudeLongitudeModel getLatitudeLongitude() {
+        return latitudeLongitude;
+    }
+
+    public void setLatitudeLongitude(LatitudeLongitudeModel latitudeLongitude) {
+        this.latitudeLongitude = latitudeLongitude;
+    }
 }

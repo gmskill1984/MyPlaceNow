@@ -3,7 +3,8 @@ package com.myplacenow.MyPlaceNow.model;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,13 +40,12 @@ public class LatitudeLongitudeModel {
 	
 	@Column(name = "mp1_data_longitude_latitude")
 	private LocalDateTime dataLatitudeLongitude;
-
+	
 	@OneToOne
-    @JoinColumn(name = "mp2_id_usuario", nullable = true) 
-    private UsuarioModel usuario;
+	@JoinColumn(name = "mp2_id_usuario") 
+	@JsonBackReference
+	private UsuarioModel usuario;
 
-	
-	
 	public Long getIdLatitudeLongitude() {
 		return idLatitudeLongitude;
 	}

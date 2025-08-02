@@ -21,6 +21,8 @@ public class LatitudeLongitudeService {
 
 	public LatitudeLongitudeModel save(LatitudeLongitudeModel latitudeLongitudeModel) {
 		
+		
+		
 		ZoneId zonaBrasil = ZoneId.of("America/Sao_Paulo");
 		ZonedDateTime agoraComFuso = ZonedDateTime.now(zonaBrasil);
 		LocalDateTime dataHoraBrasil = agoraComFuso.toLocalDateTime();
